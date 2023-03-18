@@ -6,6 +6,8 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+console.log(process.env.VUE_APP_SITE)
+</script>
 
 <style scoped></style>
