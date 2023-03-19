@@ -8,6 +8,7 @@ module.exports = defineConfig({
   outputDir: './build',
   publicPath: './',
   transpileDependencies: true,
+  lintOnSave: false,
   configureWebpack: {
     resolve: {
       alias: {
