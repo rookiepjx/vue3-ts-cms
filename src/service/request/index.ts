@@ -77,6 +77,13 @@ class MyRequest {
         })
     })
   }
+  get<T>(config: MyRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'GET' })
+  }
+
+  post<T>(config: MyRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'POST' })
+  }
 }
 
 export default MyRequest

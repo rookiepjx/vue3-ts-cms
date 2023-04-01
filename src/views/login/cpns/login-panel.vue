@@ -1,18 +1,18 @@
 <template>
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
-    <el-tabs type="border-card" stretch>
-      <el-tab-pane>
+    <el-tabs type="border-card" stretch v-model="currentTab">
+      <el-tab-pane name="account">
         <template #label>
           <span><i class="el-icon-user-solid"></i> 账号登录</span>
         </template>
         <login-account ref="accountRef" />
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name="phone">
         <template #label>
           <span><i class="el-icon-mobile-phone"></i> 手机登录</span>
         </template>
-        <login-phone />
+        <login-phone ref="phone" />
       </el-tab-pane>
     </el-tabs>
 
@@ -38,19 +38,28 @@ export default defineComponent({
     LoginPhone
   },
   setup() {
+    // 1.定义data
     const isKeepPassword = ref(true)
     // ref初始值不能为null,否则在通过ref调用loginAction方法时，ts会推导null类型没有loginAction方法
     // InstanceType为ts的工具类型
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
-
+    const phoneRef = ref<InstanceType<typeof LoginPhone>>()
+    const currentTab = ref('account')
+    // 2.定义方法
     const handleLoginClick = () => {
-      accountRef.value?.loginAction()
+      if (currentTab.value === 'account') {
+        accountRef.value?.loginAction(isKeepPassword.value)
+      } else {
+        console.log('手机验证码登录')
+      }
     }
 
     return {
       isKeepPassword,
       handleLoginClick,
-      accountRef
+      accountRef,
+      phoneRef,
+      currentTab
     }
   }
 })

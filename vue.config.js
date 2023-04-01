@@ -4,6 +4,7 @@ const path = require('path')
 const resolve = (dir) => {
   return path.resolve(__dirname, dir)
 }
+const ip = 'codercba.com:5000'
 module.exports = defineConfig({
   outputDir: './build',
   publicPath: './',
@@ -18,13 +19,20 @@ module.exports = defineConfig({
   },
   devServer: {
     proxy: {
-      '/api': {
-        target: 'http://httpbin.org/',
-        changeOrigin: true,
+      '^/api': {
+        target: ip,
         pathRewrite: {
-          '^/api': '/'
-        }
+          '^/api': ''
+        },
+        changeOrigin: true
       }
+      // '/api': {
+      //   target: 'http://httpbin.org/',
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api': '/'
+      //   }
+      // }
     }
   }
 })

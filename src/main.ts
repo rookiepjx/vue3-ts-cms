@@ -9,16 +9,13 @@ import './assets/css/index.less'
 
 // 全局注册 例如elementUi
 import { globalRegister } from '@/global'
-// 封装axios
-import httpRequest from '@/service'
+
+import { setupStore } from './store'
 
 const app = createApp(App)
 app.use(router)
 app.use(store)
 app.use(globalRegister)
-app.mount('#app')
+setupStore()
 
-httpRequest.request({
-  url: '/forms/post',
-  method: 'get'
-})
+app.mount('#app')
