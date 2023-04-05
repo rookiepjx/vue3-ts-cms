@@ -4,7 +4,7 @@ const path = require('path')
 const resolve = (dir) => {
   return path.resolve(__dirname, dir)
 }
-const ip = 'codercba.com:5000'
+const ip = 'http://codercba.com:5000'
 module.exports = defineConfig({
   outputDir: './build',
   publicPath: './',
