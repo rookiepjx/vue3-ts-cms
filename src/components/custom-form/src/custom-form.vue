@@ -1,6 +1,6 @@
 <template>
   <div class="custom-form">
-    <el-form v-model="formData">
+    <el-form v-bind="otherFormConfig" v-model="formData">
       <el-row>
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
@@ -15,15 +15,17 @@
               <template v-if="item.type === 'input'">
                 <el-input
                   :placeholder="item.placeholder"
-                  v-bind="item.otherProps"
+                  v-bind="item.otherItemProps"
                   style="width: 100%"
+                  v-model="formData[`${item.field}`]"
                 ></el-input>
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select
                   :placeholder="item.placeholder"
-                  v-bind="item.otherProps"
+                  v-bind="item.otherItemProps"
                   style="width: 100%"
+                  v-model="formData[`${item.field}`]"
                 >
                   <el-option
                     v-for="option in item.options"
@@ -36,7 +38,8 @@
               <template v-else-if="item.type === 'datepicker'">
                 <el-date-picker
                   style="width: 100%"
-                  v-bind="item.otherProps"
+                  v-bind="item.otherItemProps"
+                  v-model="formData[`${item.field}`]"
                 ></el-date-picker>
               </template>
               <!-- 具名插槽 -->
@@ -54,10 +57,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, ref, watch } from 'vue'
 import { IFormItems } from '../types'
 export default defineComponent({
   props: {
+    otherFormConfig: {
+      type: Object,
+      default: () => ({})
+    },
     formItems: {
       type: Array as PropType<IFormItems[]>,
       default: () => []
@@ -81,8 +88,16 @@ export default defineComponent({
       })
     }
   },
-  setup() {
-    const formData = {}
+  setup(props, { emit }) {
+    const formData = ref({ ...props.modelValue })
+    watch(
+      formData,
+      (newValue) => {
+        console.log(newValue)
+        emit('update:modelValue', newValue)
+      },
+      { deep: true }
+    )
     return {
       formData
     }
