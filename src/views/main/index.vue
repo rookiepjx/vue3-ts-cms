@@ -8,7 +8,11 @@
         <el-header class="page-header">
           <nav-header @foldChange="handleFoldChange" />
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-main class="page-content">
+          <div class="page-info">
+            <router-view></router-view>
+          </div>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -50,6 +54,11 @@ export default defineComponent({
 
     .page-content {
       height: calc(100% - 100px) !important;
+      .page-info {
+        height: 100%;
+        border-radius: 5px;
+        background-color: #fff;
+      }
     }
   }
   .el-aside {

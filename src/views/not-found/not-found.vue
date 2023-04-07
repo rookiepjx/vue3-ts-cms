@@ -1,17 +1,17 @@
 <template>
-  <router-view></router-view>
+  <div>
+    <div>Not Found</div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'App'
+  setup() {
+    return {}
+  }
 })
 </script>
 
-<style lang="scss">
-#app {
-  height: 100%;
-}
-</style>
+<style scoped></style>
