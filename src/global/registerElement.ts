@@ -24,7 +24,9 @@ import {
   ElSelect,
   ElSubMenu,
   ElTabPane,
-  ElTabs
+  ElTabs,
+  ElBreadcrumb,
+  ElBreadcrumbItem
 } from 'element-plus/lib/index'
 import * as Icons from '@element-plus/icons-vue'
 
@@ -51,7 +53,9 @@ const components = [
   ElOption,
   ElDatePicker,
   ElRow,
-  ElCol
+  ElCol,
+  ElBreadcrumb,
+  ElBreadcrumbItem
 ]
 
 export default function (app: App): void {
