@@ -61,6 +61,10 @@ import { defineComponent, PropType, ref, watch } from 'vue'
 import { IFormItems } from '../types'
 export default defineComponent({
   props: {
+    modelValue: {
+      type: Object,
+      required: true
+    },
     otherFormConfig: {
       type: Object,
       default: () => ({})
