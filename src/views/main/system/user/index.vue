@@ -1,48 +1,69 @@
 <template>
   <div class="user">
     <div class="content">
-      <custom-form v-bind="searchFormConfig" v-model="formData">
-        <template v-slot:slotA>
-          <div>
-            插槽A<el-button type="primary" size="small" @click="slotClick"
-              >A</el-button
-            >
-          </div>
+      <page-search :searchFormConfig="searchFormConfig"> </page-search>
+      <custom-table :listData="userList" :propList="propList">
+        <template #status="scope">
+          <el-button>{{ scope.row.enable ? '启用' : '禁用' }}</el-button>
         </template>
-        <template v-slot:slotB>
-          <div>
-            插槽B<el-button type="primary" size="small" @click="slotClick"
-              >B</el-button
-            >
-          </div>
+        <template #createAt="scope">
+          <strong>{{ scope.row.createAt }}</strong>
         </template>
-      </custom-form>
+      </custom-table>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import CustomForm from '@/components/custom-form'
+import { defineComponent, computed } from 'vue'
+import { useStore } from '@/store'
+import PageSearch from '@/components/page-search'
+import CustomTable from '@/components/custom-table'
 import { searchFormConfig } from './config/search.config'
 
 export default defineComponent({
   components: {
-    CustomForm
+    PageSearch,
+    CustomTable
   },
   name: 'user',
   setup() {
-    const slotClick = () => {
-      console.log(123)
+    const store = useStore()
+    store.dispatch('system/getPageListAction', {
+      pageUrl: '/users/list',
+      queryInfo: {
+        offset: 0,
+        size: 10
+      }
+    })
+
+    const userList = computed(() => store.state.system.userList)
+    const userCount = computed(() => store.state.system.userCount)
+
+    const propList = [
+      { prop: 'name', label: '用户名', minWidth: '100' },
+      { prop: 'realname', label: '真实姓名', minWidth: '100' },
+      { prop: 'cellphone', label: '手机号码', minWidth: '100' },
+      { prop: 'enable', label: '状态', minWidth: '100', slotName: 'status' },
+      {
+        prop: 'createAt',
+        label: '创建时间',
+        minWidth: '250',
+        slotName: 'createAt'
+      },
+      {
+        prop: 'updateAt',
+        label: '更新时间',
+        minWidth: '250',
+        slotName: 'updateAt'
+      }
+    ]
+    return {
+      searchFormConfig,
+      userList,
+      userCount,
+      propList
     }
-    // 表单数据的属性双向绑定由配置文件的field属性动态来决定
-    const formOriginData: any = {}
-    const formItems = searchFormConfig?.formItems ?? []
-    for (let item of formItems) {
-      item.field && (formOriginData[item.field] = '')
-    }
-    const formData = ref(formOriginData)
-    return { searchFormConfig, slotClick, formData }
   }
 })
 </script>

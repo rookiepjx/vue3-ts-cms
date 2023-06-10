@@ -26,7 +26,9 @@ import {
   ElTabPane,
   ElTabs,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn
 } from 'element-plus/lib/index'
 import * as Icons from '@element-plus/icons-vue'
 
@@ -55,7 +57,9 @@ const components = [
   ElRow,
   ElCol,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn
 ]
 
 export default function (app: App): void {

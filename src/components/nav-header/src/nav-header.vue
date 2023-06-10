@@ -17,7 +17,7 @@ import { defineComponent, ref, computed } from 'vue'
 
 import Breadcrumb from '@/components/breadcrumb'
 
-import { useStore } from 'vuex'
+import { useStore } from '@/store'
 import { useRoute } from 'vue-router'
 import { pathMapBreadcrumbs } from '@/utils/mapMenus'
 

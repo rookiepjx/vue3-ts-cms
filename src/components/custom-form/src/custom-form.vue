@@ -1,5 +1,8 @@
 <template>
   <div class="custom-form">
+    <div class="header">
+      <slot name="header"></slot>
+    </div>
     <el-form v-bind="otherFormConfig" v-model="formData">
       <el-row>
         <template v-for="item in formItems" :key="item.label">
@@ -53,6 +56,9 @@
         </template>
       </el-row>
     </el-form>
+    <div class="footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
@@ -97,7 +103,6 @@ export default defineComponent({
     watch(
       formData,
       (newValue) => {
-        console.log(newValue)
         emit('update:modelValue', newValue)
       },
       { deep: true }

@@ -1,4 +1,4 @@
-export default interface ILoginState {
+export interface ILoginState {
   token: string
   userInfo: any
   userMenus: any

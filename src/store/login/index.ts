@@ -1,7 +1,7 @@
 import { Module } from 'vuex'
 
-import ILoginState from './types'
-import IRootState from '../types'
+import { ILoginState } from './types'
+import { IRootState } from '../types'
 import { IAccount } from '@/service/login/types'
 
 import localCache from '@/utils/cache'

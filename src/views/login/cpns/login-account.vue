@@ -14,7 +14,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
 import { ElForm } from 'element-plus'
-import { useStore } from 'vuex'
+import { useStore } from '@/store'
 
 import { rules } from '../config/account-config'
 import localCache from '@/utils/cache'
