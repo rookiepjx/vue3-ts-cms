@@ -1,9 +1,7 @@
 <template>
   <div class="page-search">
     <custom-form v-bind="searchFormConfig" v-model="formData">
-      <template #header>
-        <h1 class="header">高级检索</h1>
-      </template>
+      <template #header> </template>
       <template #footer>
         <div class="handle-btns">
           <el-button @click="handleResetClick"
@@ -20,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import CustomForm from '@/components/custom-form'
+import CustomForm from '@/base-ui/custom-form'
 
 export default defineComponent({
   props: {

@@ -55,7 +55,6 @@ export default defineComponent({
     .page-content {
       height: calc(100% - 100px) !important;
       .page-info {
-        height: 100%;
         border-radius: 5px;
         background-color: #fff;
       }

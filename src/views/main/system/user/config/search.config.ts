@@ -1,4 +1,4 @@
-import { IForm } from '@/components/custom-form/types'
+import { IForm } from '@/base-ui/custom-form/types'
 
 export const searchFormConfig: IForm = {
   otherFormConfig: {
