@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 
-import { IBreadcrumb } from '@/components/breadcrumb'
+import { IBreadcrumb } from '@/base-ui/breadcrumb'
 
 // 当path为/main时，pathMapToMenu匹配到的menu为undefined.
 // 所以默认取第一个菜单

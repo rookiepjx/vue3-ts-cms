@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
 
-import Breadcrumb from '@/components/breadcrumb'
+import Breadcrumb from '@/base-ui/breadcrumb'
 
 import { useStore } from '@/store'
 import { useRoute } from 'vue-router'
