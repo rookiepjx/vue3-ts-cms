@@ -1,7 +1,7 @@
 import { IForm } from '@/base-ui/custom-form/types'
 
 export const searchFormConfig: IForm = {
-  otherFormConfig: {
+  otherOptions: {
     size: 'small'
   },
   labelWidth: '100px',
@@ -17,7 +17,7 @@ export const searchFormConfig: IForm = {
       type: 'input',
       label: 'id',
       placeholder: '请输入id',
-      otherItemProps: {
+      otherOptions: {
         clearable: true
       }
     },
@@ -48,7 +48,7 @@ export const searchFormConfig: IForm = {
       field: 'createTm',
       type: 'datepicker',
       label: '创建时间',
-      otherItemProps: {
+      otherOptions: {
         startPlaceholder: '开始时间',
         endPlaceholder: '结束时间',
         type: 'daterange'

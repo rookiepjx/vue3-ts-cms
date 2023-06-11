@@ -14,7 +14,7 @@ export interface IFormItems {
   // 插槽以非表单项的形式显示
   noFormItem?: boolean
   // 其余elementUI支持的配置属性
-  otherItemProps?: any
+  otherOptions?: any
 }
 
 // 表单项配置接口
@@ -24,5 +24,5 @@ export interface IForm {
   colLayout?: any
   itemLayout?: any
   // 其余elementUI支持的配置属性
-  otherFormConfig?: any
+  otherOptions?: any
 }

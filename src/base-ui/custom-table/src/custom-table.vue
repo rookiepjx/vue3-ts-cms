@@ -42,7 +42,7 @@
         <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage4"
+          :current-page="currentPage"
           :page-sizes="[100, 200, 300, 400]"
           :page-size="100"
           layout="total, sizes, prev, pager, next, jumper"
@@ -79,14 +79,27 @@ export default defineComponent({
       default: true
     }
   },
-  emits: ['selectionChange'],
+  emits: ['selectionChange', 'handleSizeChange', 'handleCurrentChange'],
   setup(props, { emit }) {
     const handleSelectionChange = (value: any) => {
       emit('selectionChange', value)
     }
 
+    const handleSizeChange = (value: number) => {
+      emit('handleSizeChange', value)
+    }
+
+    const handleCurrentChange = (value: number) => {
+      emit('handleCurrentChange', value)
+    }
+
+    const currentPage = 1
+
     return {
-      handleSelectionChange
+      handleSelectionChange,
+      handleSizeChange,
+      handleCurrentChange,
+      currentPage
     }
   }
 })

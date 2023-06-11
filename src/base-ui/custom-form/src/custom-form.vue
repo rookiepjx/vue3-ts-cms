@@ -3,7 +3,7 @@
     <div class="header">
       <slot name="header"></slot>
     </div>
-    <el-form v-bind="otherFormConfig" v-model="formData">
+    <el-form v-bind="otherOptions" v-model="formData">
       <el-row>
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
@@ -18,7 +18,7 @@
               <template v-if="item.type === 'input'">
                 <el-input
                   :placeholder="item.placeholder"
-                  v-bind="item.otherItemProps"
+                  v-bind="item.otherOptions"
                   style="width: 100%"
                   v-model="formData[`${item.field}`]"
                 ></el-input>
@@ -26,7 +26,7 @@
               <template v-else-if="item.type === 'select'">
                 <el-select
                   :placeholder="item.placeholder"
-                  v-bind="item.otherItemProps"
+                  v-bind="item.otherOptions"
                   style="width: 100%"
                   v-model="formData[`${item.field}`]"
                 >
@@ -41,7 +41,7 @@
               <template v-else-if="item.type === 'datepicker'">
                 <el-date-picker
                   style="width: 100%"
-                  v-bind="item.otherItemProps"
+                  v-bind="item.otherOptions"
                   v-model="formData[`${item.field}`]"
                 ></el-date-picker>
               </template>
@@ -71,7 +71,7 @@ export default defineComponent({
       type: Object,
       required: true
     },
-    otherFormConfig: {
+    otherOptions: {
       type: Object,
       default: () => ({})
     },
