@@ -1,6 +1,11 @@
 <template>
   <div class="page-content">
-    <custom-table :listData="dataList" v-bind="contentTableConfig">
+    <custom-table
+      :listData="dataList"
+      :listCount="dataCount"
+      v-bind="contentTableConfig"
+      v-model:page="pageInfo"
+    >
       <!-- 1.header中的插槽 -->
       <template #headerHandler>
         <el-button type="primary" size="default">新建用户</el-button>
@@ -36,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref, watch } from 'vue'
 import { useStore } from '@/store'
 
 import CustomTable from '@/base-ui/custom-table'
@@ -56,21 +61,38 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore()
-    // 每个页面的列表通过传递pageName参数去获取接口数据
-    store.dispatch('system/getPageListAction', {
-      pageName: props.pageName,
-      queryInfo: {
-        offset: 0,
-        size: 10
-      }
+
+    // 1.双向绑定pageInfo
+    const pageInfo = ref({ currentPage: 0, pageSize: 10 })
+    watch(pageInfo, () => {
+      getPageData()
     })
+
+    // 2.发送网络请求
+    const getPageData = (queryInfo: any = {}) => {
+      store.dispatch('system/getPageListAction', {
+        pageName: props.pageName,
+        queryInfo: {
+          offset: pageInfo.value.currentPage * pageInfo.value.pageSize,
+          size: pageInfo.value.pageSize,
+          ...queryInfo
+        }
+      })
+    }
+    getPageData()
 
     // 通过pageName参数获取列表数据
     const dataList = computed(() =>
       store.getters[`system/pageListData`](props.pageName)
     )
+    const dataCount = computed(() =>
+      store.getters[`system/pageListCount`](props.pageName)
+    )
     return {
-      dataList
+      dataList,
+      dataCount,
+      getPageData,
+      pageInfo
     }
   }
 })
