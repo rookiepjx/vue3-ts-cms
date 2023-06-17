@@ -3,12 +3,15 @@
   <div class="user">
     <div class="content">
       <page-search
-        ref="pageContentRef"
         :searchFormConfig="searchFormConfig"
-        @resetBtnClick="handleResetClick"
-        @queryBtnClick="handleQueryClick"
+        @handleResetClick="handleResetClick"
+        @handleQueryClick="handleQueryClick"
       />
-      <page-content :contentTableConfig="contentTableConfig" pageName="users" />
+      <page-content
+        ref="pageContentRef"
+        :contentTableConfig="contentTableConfig"
+        pageName="users"
+      />
     </div>
   </div>
 </template>
@@ -31,13 +34,12 @@ export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'user',
   setup() {
-    const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
+    const [handleResetClick, handleQueryClick] = usePageSearch()
     return {
       searchFormConfig,
       contentTableConfig,
       handleResetClick,
-      handleQueryClick,
-      pageContentRef
+      handleQueryClick
     }
   }
 })

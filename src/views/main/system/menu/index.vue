@@ -15,6 +15,7 @@ import PageContent from '@/components/page-content'
 import { contentTableConfig } from './config/content.config'
 
 export default defineComponent({
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'menu',
   components: {
     PageContent
