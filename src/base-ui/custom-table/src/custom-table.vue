@@ -144,4 +144,12 @@ export default defineComponent({
     text-align: right !important;
   }
 }
+
+.el-table {
+  & ::v-deep th.el-table__cell,
+  ::v-deep td.el-table__cell {
+    // 解决el-table中插槽元素（el-image）和el-table层级样式冲突问题
+    position: static;
+  }
+}
 </style>
