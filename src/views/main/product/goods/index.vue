@@ -4,6 +4,7 @@
       <template #image="scope">
         <el-image
           style="width: 60px; height: 60px"
+          fit="cover"
           :src="scope.row.imgUrl"
           :preview-src-list="[scope.row.imgUrl]"
         >
