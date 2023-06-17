@@ -29,7 +29,8 @@ import {
   ElBreadcrumbItem,
   ElTable,
   ElTableColumn,
-  ElPagination
+  ElPagination,
+  ElImage
 } from 'element-plus/lib/index'
 import * as Icons from '@element-plus/icons-vue'
 
@@ -61,7 +62,8 @@ const components = [
   ElBreadcrumbItem,
   ElTable,
   ElTableColumn,
-  ElPagination
+  ElPagination,
+  ElImage
 ]
 
 export default function (app: App): void {
