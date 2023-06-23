@@ -141,7 +141,7 @@ export default defineComponent({
   margin-top: 15px;
 
   .el-pagination {
-    text-align: right !important;
+    justify-content: end;
   }
 }
 
