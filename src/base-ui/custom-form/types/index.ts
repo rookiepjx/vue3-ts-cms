@@ -1,4 +1,10 @@
-type FormItemType = 'input' | 'number' | 'select' | 'datepicker' | 'slot'
+type FormItemType =
+  | 'input'
+  | 'number'
+  | 'select'
+  | 'datepicker'
+  | 'password'
+  | 'slot'
 
 // 表单项配置接口
 export interface IFormItems {
@@ -11,10 +17,10 @@ export interface IFormItems {
   options?: any[]
   // 插槽名
   name?: string
-  // 插槽以非表单项的形式显示
-  noFormItem?: boolean
   // 其余elementUI支持的配置属性
   otherOptions?: any
+  // 是否隐藏
+  isHidden?: boolean
 }
 
 // 表单项配置接口
@@ -22,7 +28,7 @@ export interface IForm {
   formItems: IFormItems[]
   labelWidth?: string
   colLayout?: any
-  itemLayout?: any
+  itemStyle?: any
   // 其余elementUI支持的配置属性
   otherOptions?: any
 }

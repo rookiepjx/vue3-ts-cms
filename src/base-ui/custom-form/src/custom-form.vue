@@ -8,18 +8,21 @@
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
             <el-form-item
-              v-if="!item.noFormItem"
+              v-if="!item.isHidden"
               :label="item.label"
               :prop="item.field"
               :rules="item.rule"
-              :style="itemLayout"
+              :style="itemStyle"
               :label-width="labelWidth"
             >
-              <template v-if="item.type === 'input'">
+              <template
+                v-if="item.type === 'input' || item.type === 'password'"
+              >
                 <el-input
                   :placeholder="item.placeholder"
                   v-bind="item.otherOptions"
                   style="width: 100%"
+                  :show-password="item.type === 'password'"
                   v-model="formData[`${item.field}`]"
                 ></el-input>
               </template>
@@ -34,7 +37,7 @@
                     v-for="option in item.options"
                     :key="option.value"
                     :value="option.value"
-                    :label="option.label"
+                    :label="option.title"
                   ></el-option>
                 </el-select>
               </template>
@@ -83,7 +86,7 @@ export default defineComponent({
       type: String,
       default: '100px'
     },
-    itemLayout: {
+    itemStyle: {
       type: Object,
       default: () => ({ padding: '10px 40px' })
     },

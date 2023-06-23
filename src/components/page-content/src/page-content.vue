@@ -8,7 +8,9 @@
     >
       <!-- 1.header中的插槽 -->
       <template #headerHandler>
-        <el-button type="primary" size="default">新建用户</el-button>
+        <el-button type="primary" size="default" @click="handleNewClick"
+          >新建用户</el-button
+        >
       </template>
       <!-- 2.table列中的插槽 -->
       <template #status="scope">
@@ -26,12 +28,20 @@
         <span>{{ $filters.formatTime(scope.row.updateAt) }}</span>
       </template>
       <!-- table列中的操作列 -->
-      <template #operate>
+      <template #operate="scope">
         <div class="handle-btns">
-          <el-button size="small" type="primary" text
+          <el-button
+            size="small"
+            type="primary"
+            text
+            @click="handleEditClick(scope.row)"
             ><el-icon><Edit /></el-icon>编辑</el-button
           >
-          <el-button size="small" type="primary" text
+          <el-button
+            size="small"
+            type="primary"
+            text
+            @click="handleDeleteClick(scope.row)"
             ><el-icon><Delete /></el-icon>删除</el-button
           >
         </div>
@@ -70,7 +80,7 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
+  setup(props, { emit }) {
     const store = useStore()
 
     // 1.双向绑定pageInfo
@@ -110,12 +120,30 @@ export default defineComponent({
         return true
       }
     )
+
+    // 5.删除/编辑/新建操作
+    const handleDeleteClick = (item: any) => {
+      console.log(item)
+      store.dispatch('system/deletePageDataAction', {
+        pageName: props.pageName,
+        id: item.id
+      })
+    }
+    const handleNewClick = () => {
+      emit('newBtnClick')
+    }
+    const handleEditClick = (item: any) => {
+      emit('editBtnClick', item)
+    }
     return {
       dataList,
       dataCount,
       getPageData,
       pageInfo,
-      otherPropSlots
+      otherPropSlots,
+      handleDeleteClick,
+      handleNewClick,
+      handleEditClick
     }
   }
 })
