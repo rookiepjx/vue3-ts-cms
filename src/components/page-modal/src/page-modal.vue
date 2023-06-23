@@ -1,7 +1,7 @@
 <template>
   <div class="page-modal">
     <el-dialog
-      title="新建用户"
+      :title="dialogTitle"
       v-model="dialogVisible"
       width="30%"
       center
@@ -46,6 +46,7 @@ export default defineComponent({
   },
   setup(props) {
     const dialogVisible = ref(false)
+    const dialogTitle = ref('')
     const formData = ref<any>({})
 
     watch(
@@ -63,7 +64,6 @@ export default defineComponent({
       dialogVisible.value = false
       if (Object.keys(props.defaultInfo).length) {
         // 编辑
-        console.log('编辑用户')
         store.dispatch('system/editPageDataAction', {
           pageName: props.pageName,
           editData: { ...formData.value },
@@ -71,7 +71,6 @@ export default defineComponent({
         })
       } else {
         // 新建
-        console.log('新建用户')
         store.dispatch('system/createPageDataAction', {
           pageName: props.pageName,
           newData: { ...formData.value }
@@ -81,6 +80,7 @@ export default defineComponent({
 
     return {
       dialogVisible,
+      dialogTitle,
       formData,
       handleConfirmClick
     }

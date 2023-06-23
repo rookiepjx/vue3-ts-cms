@@ -9,7 +9,7 @@
       <!-- 1.header中的插槽 -->
       <template #headerHandler>
         <el-button type="primary" size="default" @click="handleNewClick"
-          >新建用户</el-button
+          >新建</el-button
         >
       </template>
       <!-- 2.table列中的插槽 -->

@@ -11,8 +11,8 @@
         ref="pageContentRef"
         :contentTableConfig="contentTableConfig"
         pageName="users"
-        @newBtnClick="handleNewData"
-        @editBtnClick="handleEditData"
+        @newBtnClick="handleNewData('新建用户')"
+        @editBtnClick="(data) => handleEditData(data, '修改用户')"
       />
       <page-modal
         :defaultInfo="defaultInfo"
