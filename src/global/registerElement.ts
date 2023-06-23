@@ -32,7 +32,10 @@ import {
   ElTableColumn,
   ElPagination,
   ElImage,
-  ElDialog
+  ElDialog,
+  ElAvatar,
+  ElDropdown,
+  ElDropdownItem
 } from 'element-plus/lib/index'
 import * as Icons from '@element-plus/icons-vue'
 
@@ -67,7 +70,10 @@ const components = [
   ElTableColumn,
   ElPagination,
   ElImage,
-  ElDialog
+  ElDialog,
+  ElAvatar,
+  ElDropdown,
+  ElDropdownItem
 ]
 
 export default function (app: App): void {

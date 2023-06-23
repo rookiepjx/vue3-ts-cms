@@ -8,6 +8,7 @@
     /></el-icon>
     <div class="content">
       <breadcrumb :breadcrumbs="breadcrumbs" />
+      <user-info />
     </div>
   </div>
 </template>
@@ -16,6 +17,7 @@
 import { defineComponent, ref, computed } from 'vue'
 
 import Breadcrumb from '@/base-ui/breadcrumb'
+import UserInfo from './user-info.vue'
 
 import { useStore } from '@/store'
 import { useRoute } from 'vue-router'
@@ -23,7 +25,8 @@ import { pathMapBreadcrumbs } from '@/utils/mapMenus'
 
 export default defineComponent({
   components: {
-    Breadcrumb
+    Breadcrumb,
+    UserInfo
   },
   emits: ['foldChange'],
   setup(props, { emit }) {
