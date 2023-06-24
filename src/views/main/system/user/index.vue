@@ -47,7 +47,7 @@ export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'user',
   setup() {
-    const [handleResetClick, handleQueryClick] = usePageSearch()
+    const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
 
     // pageModal相关的hook逻辑
     // 1.处理密码的逻辑
@@ -94,7 +94,8 @@ export default defineComponent({
       handleNewData,
       handleEditData,
       modalConfigRef,
-      pageModalRef
+      pageModalRef,
+      pageContentRef
     }
   }
 })

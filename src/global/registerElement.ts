@@ -35,7 +35,8 @@ import {
   ElDialog,
   ElAvatar,
   ElDropdown,
-  ElDropdownItem
+  ElDropdownItem,
+  ElTree
 } from 'element-plus/lib/index'
 import * as Icons from '@element-plus/icons-vue'
 
@@ -73,7 +74,8 @@ const components = [
   ElDialog,
   ElAvatar,
   ElDropdown,
-  ElDropdownItem
+  ElDropdownItem,
+  ElTree
 ]
 
 export default function (app: App): void {
